@@ -1,0 +1,15 @@
+tensorflow
+wfdb
+numpy
+scipy
+scikit-learn
+matplotlib
+pandas
+tqdm
+pytest
+pre-commit
+black
+isort
+flake8
+seaborn
+mypy

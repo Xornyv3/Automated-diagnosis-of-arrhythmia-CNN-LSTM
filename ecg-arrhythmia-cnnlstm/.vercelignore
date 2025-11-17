@@ -1,0 +1,11 @@
+# Exclude heavy, non-static artifacts from deployment
+# Data and large model directories
+/data/
+/models/
+/runs/
+/artifacts/
+/.venv/
+/.venv310/
+__pycache__/
+*.pyc
+*.ipynb

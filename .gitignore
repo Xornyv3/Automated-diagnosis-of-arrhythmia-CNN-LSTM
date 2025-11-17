@@ -24,20 +24,6 @@ data/
 Data/
 */data/
 
-# Repo-wide generated / evaluation outputs
-**/eval/
-**/eval/**
-**/figures/
-**/figures/**
-**/artifacts/
-**/artifacts/**
-**/models/
-**/models/**
-**/runs/
-**/runs/**
-**/logs/
-**/logs/**
-
 # Models, checkpoints, artifacts, runs and logs
 models/
 models/**

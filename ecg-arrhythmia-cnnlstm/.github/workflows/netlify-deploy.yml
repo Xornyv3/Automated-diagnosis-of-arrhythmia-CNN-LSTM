@@ -1,0 +1,34 @@
+name: Netlify Deploy
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Netlify CLI
+        run: npm install -g netlify-cli
+
+      - name: Deploy to Netlify (subfolder)
+        working-directory: ecg-arrhythmia-cnnlstm
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          # Dry run (optional) - remove if not needed
+          netlify deploy --dir . --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --message "CI preview" || true
+          # Production deploy
+          netlify deploy --prod --dir . --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --message "Auto deploy $(date +'%Y-%m-%d %H:%M:%S')"
+
+    # Optional post step printing deployed URL (requires parsing CLI output)

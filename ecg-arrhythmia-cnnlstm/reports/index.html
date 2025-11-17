@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Automated diagnosis of arrhythmia using combination of CNN and LSTM techniques with variable length heart beats — by Hala Azzouz (3rd year GBM, ENSAM Rabat)</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img class="logo" src="Ensam.png" alt="ENSAM logo" title="ENSAM logo">
+      <div>
+  <div class="title">Automated diagnosis of arrhythmia using combination of CNN and LSTM techniques with variable length heart beats</div>
+  <div class="lead">by Hala Azzouz — 3rd year GBM student at ENSAM Rabat.</div>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Overview</h2>
+      <p class="small">This project preprocesses ECG records (MIT‑BIH), extracts 1000‑sample beats centered on R‑peaks (500 samples before and after), applies per‑segment z‑score normalization, and trains a Conv1D → LSTM model (Keras). Training uses stratified 10‑fold cross validation with class weights and optional augmentation/bandpass. The page below summarizes the evaluation metrics and links to saved artifacts.</p>
+    </section>
+
+    <div class="grid">
+      <main>
+        <section class="card">
+          <h3>Aggregate performance</h3>
+          <p class="small">Metrics are aggregated across the 10 validation folds. See links on the right for per‑fold artifacts and full CSV/JSON outputs.</p>
+
+          <table class="metrics-table" aria-label="aggregate metrics">
+            <thead>
+              <tr><th>class</th><th>PPV (precision)</th><th>Sensitivity (recall)</th><th>Specificity</th><th>F1</th><th>support</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Normal</td><td>0.9861</td><td>0.8231</td><td>0.9669</td><td>0.8942</td><td>7505</td></tr>
+              <tr><td>LBBB</td><td>0.9541</td><td>0.9863</td><td>0.9957</td><td>0.9695</td><td>807</td></tr>
+              <tr><td>RBBB</td><td>0.9212</td><td>0.9596</td><td>0.9931</td><td>0.9385</td><td>725</td></tr>
+              <tr><td>APB</td><td>0.4127</td><td>0.7663</td><td>0.9646</td><td>0.5186</td><td>254</td></tr>
+              <tr><td>PVC</td><td>0.4643</td><td>0.9194</td><td>0.8975</td><td>0.6053</td><td>713</td></tr>
+            </tbody>
+          </table>
+
+          <p class="small mt-12">Aggregate accuracy (mean over folds): <strong>0.8516</strong></p>
+
+        </section>
+
+  <section class="card mt-18">
+          <h3>Confusion matrix (normalized)</h3>
+          <p class="small">Row‑normalized confusion matrix aggregated across folds.</p>
+          <img src="../figures/aggregate_confusion_matrix_norm.png" alt="Aggregate normalized confusion matrix" class="figure">
+        </section>
+
+  <section class="card mt-18">
+          <h3>Example beats and training curves</h3>
+          <p class="small">Representative beat examples per class and saved training curves for folds.</p>
+          <div class="fig-row">
+            <img src="../figures/examples.png" alt="examples" class="fig-thumb">
+            <img src="../figures/fold_1/training_curves.png" alt="fold 1 curves" class="fig-thumb">
+          </div>
+        </section>
+
+        <section class="card mt-18">
+          <h3>Notes & interpretation</h3>
+          <ul>
+            <li>High specificity across classes indicates few false positive predictions overall.</li>
+            <li>Lower PPV for APB and PVC highlights class imbalance and potential label/feature ambiguity; targeted augmentation or more data could improve PPV.</li>
+            <li>The CNN extracts morphological features while the LSTM captures temporal structure within each beat window.</li>
+          </ul>
+        </section>
+
+      </main>
+
+      <aside>
+        <div class="card">
+          <h4>Artifacts & downloads</h4>
+          <ul class="side-list">
+            <li><a href="../eval/aggregate_classification_report.csv">aggregate_classification_report.csv</a></li>
+            <li><a href="../eval/aggregate_classification_report.md">aggregate_classification_report.md</a></li>
+            <li><a href="../eval/aggregate_metrics.json">aggregate_metrics.json</a></li>
+            <li><a href="../models/mitdb">Saved models (models/mitdb)</a> (per‑fold .keras files)</li>
+          </ul>
+        </div>
+
+        <div class="card mt-12">
+          <h4>Quick commands</h4>
+          <p class="small">To view this report locally, you can open this file in a browser, or serve it with a simple HTTP server:</p>
+          <pre class="code"># PowerShell inside project root
+python -m http.server --directory . 8000</pre>
+          <p class="small">Then open <strong>http://localhost:8000/reports/index.html</strong> in a browser.</p>
+        </div>
+
+        <div class="card mt-12">
+          <h4>Repro notes</h4>
+          <p class="small">Beats are 1000 samples (500 pre/500 post), per‑segment z‑score, sampling rate assumed 360 Hz. The training used Keras/TensorFlow in the project venv.</p>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer class="footer">
+      Generated: November 9, 2025 — Located project root `reports/index.html` — Figures are expected in `figures/` and evaluation outputs in `eval/`.
+    </footer>
+  </div>
+</body>
+</html>
