@@ -129,20 +129,25 @@ Aggregate accuracy (mean over folds): **0.8516**
 
 ### Confusion matrix & figures
 
-The project exports visualizations (confusion matrix, example beats, training curves) to the `ecg-arrhythmia-cnnlstm/web-static/` folder. If the PNGs are present they will appear in the static report; if you want them embedded directly in this `README.md`, add the image files to the repo (suggested paths):
+Below we embed representative results and visualizations produced by the evaluation pipeline. Each figure includes a short explanation of what it shows, how to read it, and how it informs arrhythmia prediction.
 
-- `ecg-arrhythmia-cnnlstm/web-static/aggregate_confusion_matrix_norm.png` — normalized confusion matrix
-- `ecg-arrhythmia-cnnlstm/web-static/examples.png` — representative beats per class
-- `ecg-arrhythmia-cnnlstm/web-static/training_curves.png` — training/validation loss & accuracy plots
+### 1) Normalized confusion matrix (aggregate)
 
-Example: to embed the confusion matrix directly, add the file above and then include:
+![Normalized confusion matrix](ecg-arrhythmia-cnnlstm/figures/aggregate_confusion_matrix_norm.png)
 
-```markdown
-![Normalized confusion matrix](ecg-arrhythmia-cnnlstm/web-static/aggregate_confusion_matrix_norm.png)
-```
+This row‑normalized confusion matrix aggregates predictions across validation folds. Rows correspond to the true class and columns to the predicted class; each row sums to 1. Diagonal cells show per‑class sensitivity (recall). Off‑diagonal cells reveal common confusions — for example, misclassification of APB as Normal or PVC as APB. Use this plot to identify which classes need more representative examples, targeted augmentation, or model tuning.
 
-If you want, I can:
+### 2) Representative beat examples (per class)
 
-- search the workspace for the figure PNGs and embed them automatically into the `README.md` (I already checked `ecg-arrhythmia-cnnlstm/web-static/` and found the HTML and JSON/CSV report; the PNG images were not present), or
-- generate the confusion matrix and example plots from available metrics & sample data and commit the images here (I can run a small script to create PNGs if you want me to and if you confirm it's OK to run Python here).
+![Representative beats per class](ecg-arrhythmia-cnnlstm/figures/examples.png)
+
+These example waveforms illustrate typical morphology for each class (Normal, LBBB, RBBB, APB, PVC). The CNN component learns morphological patterns such as QRS width, R‑peak amplitude and pre/post complexes; inspecting representative beats helps verify preprocessing (alignment, normalization) and whether class differences are visually separable.
+
+### 3) Training curves (example fold)
+
+![Training curves (example fold)](ecg-arrhythmia-cnnlstm/figures/fold_1/training_curves.png)
+
+Training and validation loss/accuracy plots for a representative fold. These curves diagnose learning behaviour: a small gap between training and validation accuracy suggests good generalization; persistent validation loss or diverging curves can indicate overfitting, class imbalance effects, or the need for stronger regularization / data augmentation. Use fold curves together with aggregate metrics to choose hyperparameter adjustments.
+
+If you prefer different folds or additional figures embedded here (for instance aggregate training curves across folds), add the corresponding PNG files to `ecg-arrhythmia-cnnlstm/figures/` and they will appear in this report.
 
