@@ -103,14 +103,6 @@ This project is provided free for public use and modification. Contributions and
 
 ---
 
-If you want, I can also:
-
-- add CI badges and a short demo GIF to the top of this `README.md`
-- commit this change for you
-- create a `CONTRIBUTING.md` or `CODE_OF_CONDUCT.md`
-
-Files touched: `README.md`
-
 ## Results (aggregate)
 
 Below are the aggregate evaluation metrics computed across 10 stratified folds. For full interactive report and downloadable artifacts see `ecg-arrhythmia-cnnlstm/web-static/index.html`.
