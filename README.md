@@ -1,8 +1,6 @@
-﻿# Automated diagnosis of arrhythmia
+﻿# Automated diagnosis of arrhythmia using CNN and LSTM
 
 Automatic diagnosis of arrhythmia using a hybrid Convolutional Neural Network (CNN) + Long Short-Term Memory (LSTM) model that supports variable-length heartbeat segments.
-
-> Short: Automated diagnosis of arrhythmia
 
 **Badges:** add CI / coverage / license badges here
 
@@ -90,11 +88,17 @@ Contributions are welcome. Suggested workflow:
 2. Add tests for new functionality
 3. Open a pull request with a clear description and reproducible steps
 
-For large data/models, include download helpers (scripts/download_*) and a short README describing required data structure.
+Contributions and contact
+
+Maintainer: `@Xornyv3`
+
+Contributions, issues and questions are welcome — please open an issue or pull request in this repository. For large data or model files, provide external download links and include small helper scripts under `scripts/` to retrieve them.
+
+This project is provided free for public use and modification. Contributions and collaborations are warmly welcomed; please open issues or pull requests on GitHub to get in touch.
 
 ## License & Citation
 
-- License: add a `LICENSE` file (MIT recommended for permissive use) and specify terms here.
+- License: this project is offered free for use and modification. If you require an explicit license file (for example, `LICENSE` with MIT/Apache terms), please raise an issue or submit a pull request.
 - Data source: PhysioNet MIT-BIH Arrhythmia Database — cite per PhysioNet guidelines when publishing.
 
 ---
@@ -110,6 +114,8 @@ Files touched: `README.md`
 ## Results (aggregate)
 
 Below are the aggregate evaluation metrics computed across 10 stratified folds. For full interactive report and downloadable artifacts see `ecg-arrhythmia-cnnlstm/web-static/index.html`.
+
+An interactive public report (figures, tables and downloadable artifacts) is also published and can be viewed at: https://automated-diagnosis-of-arrhythmia.netlify.app/.
 
 | Class  | Precision (PPV) | Recall (Sensitivity) | Specificity | F1    | Support |
 |--------|-----------------:|---------------------:|------------:|:-----:|-------:|
