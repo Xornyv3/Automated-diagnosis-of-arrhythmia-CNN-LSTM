@@ -140,3 +140,4 @@ These example waveforms illustrate typical morphology for each class (Normal, LB
 Training and validation loss/accuracy plots for a representative fold. These curves diagnose learning behaviour: a small gap between training and validation accuracy suggests good generalization; persistent validation loss or diverging curves can indicate overfitting, class imbalance effects, or the need for stronger regularization / data augmentation. Use fold curves together with aggregate metrics to choose hyperparameter adjustments.
 
 
+by `@Xornyv3` :D
