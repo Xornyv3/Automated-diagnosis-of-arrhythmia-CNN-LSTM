@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+.env/
+
+# Virtualenv variants
+venv/
+venv*/
+venv*
+.venv*/
+.venv*
+
+# Large files / models / data
+data/
+Data/
+*/data/
+models/
+models/**
+runs/
+runs/**
+artifacts/
+artifacts/**
+logs/
+logs/**
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Data/Logs
+logs/
+.data/
+/data/
+
+# OS
+.DS_Store
+Thumbs.db
