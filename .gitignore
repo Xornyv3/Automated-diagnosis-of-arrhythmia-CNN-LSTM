@@ -50,6 +50,10 @@ logs/**
 *.svg
 *.pdf
 
+# Allow project-level figures for the web-static report (keep generic image ignores above)
+!ecg-arrhythmia-cnnlstm/figures/
+!ecg-arrhythmia-cnnlstm/figures/**
+
 # OS files
 .DS_Store
 Thumbs.db
