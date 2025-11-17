@@ -1,4 +1,4 @@
-﻿# Automated diagnosis of arrhythmia
+﻿# Automated diagnosis of arrhythmia using CNN and LSTM
 
 Automatic diagnosis of arrhythmia using a hybrid Convolutional Neural Network (CNN) + Long Short-Term Memory (LSTM) model that supports variable-length heartbeat segments.
 
