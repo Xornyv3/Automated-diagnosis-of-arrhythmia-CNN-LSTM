@@ -2,8 +2,6 @@
 
 Automatic diagnosis of arrhythmia using a hybrid Convolutional Neural Network (CNN) + Long Short-Term Memory (LSTM) model that supports variable-length heartbeat segments.
 
-**Badges:** add CI / coverage / license badges here
-
 ---
 
 ## Table of contents
@@ -141,5 +139,4 @@ These example waveforms illustrate typical morphology for each class (Normal, LB
 
 Training and validation loss/accuracy plots for a representative fold. These curves diagnose learning behaviour: a small gap between training and validation accuracy suggests good generalization; persistent validation loss or diverging curves can indicate overfitting, class imbalance effects, or the need for stronger regularization / data augmentation. Use fold curves together with aggregate metrics to choose hyperparameter adjustments.
 
-If you prefer different folds or additional figures embedded here (for instance aggregate training curves across folds), add the corresponding PNG files to `ecg-arrhythmia-cnnlstm/figures/` and they will appear in this report.
 
