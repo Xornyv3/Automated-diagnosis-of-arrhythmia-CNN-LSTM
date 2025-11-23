@@ -1,0 +1,28 @@
+
+Plain-language guide: What each file does (for non-technical readers)
+
+Top-level files and scripts (quick summary):
+- `requirements.txt`: A list of the extra pieces of software (Python libraries) this project needs. Think of it like a shopping list for the code.
+- `scripts/train.py`: Runs the training process — this teaches the computer model how to recognise heartbeat patterns.
+- `scripts/infer.py`: Runs the model on new ECG recordings and produces a table of predictions (who needs attention).
+- `scripts/smoke_test.py`: A tiny test that checks the basic things work (useful to catch big problems quickly).
+
+Main code (folder `src/ecg_arrhythmia`) — plain meanings:
+- `__init__.py`: Makes the folder a Python package so the other scripts can use the code inside.
+- `config.py`: Stores the project settings and defaults (where files go, names of classes, and commonly used numbers). You can edit this to change behaviour without touching the code.
+- `data_download.py`: Gets the medical ECG recordings from the public source (PhysioNet) and saves them in `data/mitdb/`. If you haven't downloaded data yet, this is the file that does it.
+- `dataset.py`: Organises the raw recordings into tidy lists or groups so the model can learn from them (it prepares the data for training).
+- `preprocess.py`: Cleans the ECG signals and chops them into single heartbeats. This is where noise is removed and each heartbeat is turned into the same-sized piece for the model.
+- `model.py`: Defines the model (the 'brain') structure used to learn from heartbeats. It sets up the layers and how they connect.
+- `train_eval.py`: Runs the teaching process (training) and checks how well the model learned (evaluation). It also saves results and checkpoints.
+- `inference.py`: Uses a saved model to make diagnoses on new recordings. It produces a table of predictions (for each heartbeat and an overall file-level result).
+- `metrics.py`: Calculates performance numbers (accuracy, precision, recall) and the confusion matrix — this is what tells you how often the model was right or confused two classes.
+
+Short note about confusion matrices and prediction tables:
+- The prediction table (from `scripts/infer.py` + `inference.py`) lists each detected heartbeat and the model's label for it. It is what you would open as a CSV to see per-beat predictions.
+- The confusion matrix (from `metrics.py` and `train_eval.py`) summarizes how predictions compare to the true labels across many examples — this is used to understand mistakes at a glance.
+
+If you want me to make these even shorter (for a handout) or expand each file into a 1-paragraph plain-language explanation, say so and I will update the file.
+
+Generated on: 2025-11-23
+
